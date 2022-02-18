@@ -1,12 +1,6 @@
 import { merge } from 'webpack-merge';
 import common from './webpack.common';
 import { resolve, join } from 'path';
-import { platform } from 'process';
-
-let chrome;
-if (platform === 'win32') chrome = 'chrome';
-if (platform === 'linux') chrome = 'google-chrome';
-if (platform === 'darwin') chrome = 'Google Chrome';
 
 const config = merge(common, {
   mode: 'development',
@@ -20,13 +14,7 @@ const config = merge(common, {
     static: {
       directory: join(__dirname, 'public'),
     },
-    port: 5050,
-    open: {
-      app: {
-        name: chrome,
-        arguments: ['--new-window']
-      }
-    }
+    port: 5050
   },
   module: {
     rules: [
