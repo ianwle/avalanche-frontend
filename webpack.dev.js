@@ -14,7 +14,8 @@ const config = merge(common, {
     static: {
       directory: join(__dirname, 'public'),
     },
-    port: 5050
+    port: 5050,
+    historyApiFallback: true
   },
   module: {
     rules: [

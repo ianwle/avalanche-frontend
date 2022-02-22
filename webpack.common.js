@@ -1,5 +1,5 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { join } from 'path';
+import { join, resolve } from 'path';
 
 const common = {
   entry: {
@@ -10,7 +10,13 @@ const common = {
     new HtmlWebpackPlugin({
       template: 'public/index.html'
     })
-  ]
+  ],
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".scss"],
+    alias: {
+      '@': resolve('src'),
+    }
+  },
 }
 
 export default common;
