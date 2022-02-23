@@ -7,16 +7,16 @@ body {
     -moz-osx-font-smoothing: grayscale;
     overflow: hidden;
   }
-  
+
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
-  
+
   /* .App {
     padding: 10px 10px 10px 10px;
   } */
-  
+
   .Padded {
     padding: 10px 10px 10px 10px;
   }
@@ -55,13 +55,13 @@ body {
     z-index: 1;
     will-change: width, height;
   }
-  
+
   .react-grid-item.react-draggable-dragging {
     transition: none;
     z-index: 3;
     will-change: transform;
   }
-  
+
   .react-grid-item.react-grid-placeholder {
     background: gray;
     opacity: 0.2;
@@ -73,7 +73,7 @@ body {
     -o-user-select: none;
     user-select: none;
   }
-  
+
   .react-grid-item > .react-resizable-handle {
     position: absolute;
     width: 20px;
@@ -88,7 +88,7 @@ body {
     box-sizing: border-box;
     cursor: se-resize;
   }
-  
+
   /* body {
     background: white;
     padding: 20px;
@@ -97,14 +97,15 @@ body {
   #content {
     width: 100%;
   }
-  
+
   .react-grid-item {
     box-sizing: border-box;
-    border-radius: 0px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 2px;
   }
-  
+
   .react-grid-item:not(.react-grid-placeholder) {
-    background: #F5F8FA;
+    background: #000000a4;
     /* border: 1px solid black; */
   }
   .react-grid-item.resizing {

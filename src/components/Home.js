@@ -1,55 +1,33 @@
 import React from 'react';
-import * as Config from "@/utils/Config"
 import { Responsive, WidthProvider } from "react-grid-layout";
-import { Title } from "@mantine/core";
+
+import * as Config from "@/utils/Config"
+import { H6, Button } from '@blueprintjs/core';
 
 import Maps from "@/components/Grid/Maps"
+import Menu from "@/components/Widget/Menu"
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
-const defaultProps = {
-    className: "layout",
-    items: 20,
-    rowHeight: 30,
-    isDraggable: true,
-    isResizable: true,
-    autosize: true,
-    margin: [10, 10],
-    compactType: null,
-}
 export default function Home() {
 
   return (
     <React.Fragment>
-        <div class="container-row">
-
-            <div class="layer1"><Maps/></div>
-            <div class="layer2">
+        <div className="container-row bp3-dark">
+            <div className="layer1"><Maps/></div>
+            <div className="layer2">
                 <ResponsiveGridLayout
-                layouts={Config.LAYOUT}
-                breakpoints={Config.BREAKPOINTS}
-                cols={Config.COLS}
-                onWidthChange={() => {console.log("Width")}}
-                onBreakpointChange={() => {console.log("Breakpoint")}}
-                containerPadding={[20, 20]}
-                {...defaultProps}>
-                <div key="control">
-                    <div>
-
-                    </div>
-                </div>     
-                <div key="1">
-                    <div >
-                    <Title order={5}>Menu</Title>
-                            <p> THis is a test gif</p>
-                    </div>
-                </div>    
-                <div key="2">
+                  onWidthChange={() => {}}
+                  onBreakpointChange={() => {}}
+                  containerPadding={[20, 20]}
+                  {...Config.RGL_PROPS}>
+                    <div key="menu"><Menu/></div>
+                    <div key="data">
                     <div>
                         <h5><a href="#">Card heading</a></h5>
                             <p> THis is a test gif</p>
                     </div>
-                </div>  
-            </ResponsiveGridLayout>
+                  </div>
+                </ResponsiveGridLayout>
             </div>
         </div>
     </React.Fragment>
