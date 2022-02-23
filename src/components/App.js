@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router";
 
 // Components
 import Home from "./Home";
-import Maps from "./Maps";
+import Maps from "./Grid/Maps";
  
 
 export default class App extends React.Component {
