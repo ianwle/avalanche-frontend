@@ -1,7 +1,5 @@
 import React from "react";
 import { Map } from "react-map-gl";
-import { AutoSizer } from "react-virtualized";
-
 
 const MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoiaWFud3VsaW5nZW4iLCJhIjoiY2t6eDI1d2NvOGNvODJwbXp6bGpxbjJ4MCJ9.ImeaanDx3rXEwZW8LBxmdw"
 

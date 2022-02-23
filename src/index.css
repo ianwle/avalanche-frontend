@@ -34,11 +34,19 @@ body {
     padding: 0px 0px 0px 0px;
     position: relative;
     transition: height 200ms ease;
+
+    height:0px;
+    overflow:visible;
+    pointer-events:none;
+    background:none !important;
   }
+
   .react-grid-item {
     transition: all 200ms ease;
     transition-property: left, top;
     position: relative;
+    pointer-events: all;
+
   }
   .react-grid-item.cssTransforms {
     transition-property: transform;

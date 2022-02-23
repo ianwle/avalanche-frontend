@@ -13,7 +13,8 @@ const defaultProps = {
     isDraggable: true,
     isResizable: true,
     autosize: true,
-    margin: [10, 10]
+    margin: [10, 10],
+    compactType: null,
 }
 export default function Home() {
 
