@@ -1,1 +1,3 @@
 export const BLANK = 'BLANK';
+
+export const TOGGLE_NEWS_SELECTED = 'TOGGLE_NEWS_SELECTED'

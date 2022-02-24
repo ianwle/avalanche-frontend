@@ -22,10 +22,7 @@
   "rules": {
     "no-console": 1,
     "import/no-named-as-default": 0,
-    "import/no-named-as-default-member": 0,
-    "baseui/deprecated-theme-api": "warn",
-    "baseui/deprecated-component-api": "warn",
-    "baseui/no-deep-imports": "warn",
+    "import/no-named-as-default-member": 0
   },
   "settings": {
     "import/parsers": {
