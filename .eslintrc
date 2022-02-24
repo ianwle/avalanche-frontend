@@ -35,9 +35,5 @@
       ]
     }
   },
-  "plugins": [
-    // ...
-    "baseui"
-  ]
+  "plugins": []
 }
-  
