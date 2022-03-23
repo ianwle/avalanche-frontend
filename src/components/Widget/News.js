@@ -11,7 +11,7 @@ class News extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <p>I am a fragment of my imagination.</p>
+        <p>Controls</p>
       </React.Fragment>
     )
   }

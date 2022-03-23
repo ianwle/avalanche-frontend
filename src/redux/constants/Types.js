@@ -1,3 +1,5 @@
 export const BLANK = 'BLANK';
 
 export const TOGGLE_NEWS_SELECTED = 'TOGGLE_NEWS_SELECTED'
+export const ADD_NEW_MARKER = 'ADD_NEW_MARKER'
+export const UPDATE_MARKER = 'UPDATE_MARKER'

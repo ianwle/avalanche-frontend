@@ -1,10 +1,8 @@
 import React from "react";
 import { Icon, Tab, Tabs } from "@blueprintjs/core";
-import News from "@/components/Widget/News";
-import Tools from "@/components/Widget/Tools";
+import News from "@/components/Widget/News"
 
-import * as GeneralActions from "@/redux/actions/GeneralActions";
-
+import * as GeneralActions from "@/redux/actions/GeneralActions"
 
 import { connect } from "react-redux";
 
@@ -26,19 +24,15 @@ class Menu extends React.Component {
             key={"horizontal"}
             renderActiveTabPanelOnly={false}
         >
-          <Tab id="xg" title={<Icon icon="globe-network" />} panel={<div><News /></div>} />
-          <Tab id="layers" title={<Icon icon="layers" />} panel={<div>Layers</div>} />
-          <Tab id="Tools" title={<Icon icon="wrench" />} panel={<div><Tools/></div>} />
-          <Tab id="filter" title={<Icon icon="filter" />} panel={<div>Filter</div>} />
-          <Tab id="settings" title={<Icon icon="cog" />} panel={<div>Settings</div>} />
-            {/* {
+            <Tab id="xg" title={<Icon icon="globe-network"/>} panel={<div><News/></div>} />
+            {
               (() => {
                 if (this.props.GeneralReducer["newsSelectedFlag"] !== undefined &&
                 this.props.GeneralReducer["newsSelectedFlag"]) {
                   return (
                     <React.Fragment>
                       <Tab id="layers" title={<Icon icon="layers" />} panel={<div>React</div>} />
-                      <Tab id="Tools" title={<Icon icon="wrench" />} panel={<div><Tools/></div>} />
+                      <Tab id="Tools" title={<Icon icon="wrench" />} panel={<div>Tools</div>} />
                       <Tab id="filter" title={<Icon icon="filter"/>} panel={<div>Angular</div>} />
                       <Tab id="settings" title={<Icon icon="cog"/>} panel={<div>Menu</div>} />
                     </React.Fragment>
@@ -53,7 +47,7 @@ class Menu extends React.Component {
                     </React.Fragment>)
                 }
               })()
-            } */}
+            }
 
         </Tabs>
       </React.Fragment>

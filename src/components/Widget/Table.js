@@ -27,8 +27,8 @@ export default class Table extends React.Component {
       <React.Fragment>
         <div style={{"opacity": "0.8"}}>
         <Table2 numRows={5}>
-          <Column name="Dollars" cellRenderer={dollarCellRenderer}/>
-          <Column name="Euros" cellRenderer={euroCellRenderer} />
+          <Column name="Cost" cellRenderer={dollarCellRenderer}/>
+          <Column name="Resilience" cellRenderer={euroCellRenderer} />
         </Table2>
         </div>
       </React.Fragment>
