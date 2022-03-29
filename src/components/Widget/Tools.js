@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon, Tab, Tabs } from "@blueprintjs/core";
 import News from "@/components/Widget/News"
+import Layers from "@/components/Widget/Layers"
 
 import * as GeneralActions from "@/redux/actions/GeneralActions"
 

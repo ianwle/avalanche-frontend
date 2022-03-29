@@ -1,5 +1,5 @@
 import React from "react";
-import { H6 } from "@blueprintjs/core";
+import { H6, Tree } from "@blueprintjs/core";
 
 
 export default class Layers extends React.Component {
@@ -11,7 +11,13 @@ export default class Layers extends React.Component {
     return (
       <React.Fragment>
         <H6>Seismic Information</H6>
-
+        <Tree
+          contents={nodes}
+          onNodeClick={handleNodeClick}
+          onNodeCollapse={handleNodeCollapse}
+          onNodeExpand={handleNodeExpand}
+          className={Classes.ELEVATION_0}
+        />
       </React.Fragment>
     );
   }
