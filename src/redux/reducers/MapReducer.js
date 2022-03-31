@@ -11,8 +11,9 @@ export default function MapReducer (state = INITIAL_STATE, action) {
     }
       
     case (type.ADD_NEW_MARKER): {
-      newMarkers = [...state.markers]
-      newMarkers.append({
+      let newMarkers = [...state.markers]
+      console.log(action)
+      newMarkers.push({
         latitude: action.latitude,
         longitude: action.longitude
       })
@@ -24,7 +25,7 @@ export default function MapReducer (state = INITIAL_STATE, action) {
      
       // Needs to be updated
     case (type.UPDATE_MARKER): {
-      newMarkers = [...state.markers]
+      let newMarkers = [...state.markers]
       newMarkers[action.index].latitude = action.latitude
       newMarkers[action.index].longitude = action.longitude
 

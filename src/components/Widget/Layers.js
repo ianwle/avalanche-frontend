@@ -11,13 +11,13 @@ export default class Layers extends React.Component {
     return (
       <React.Fragment>
         <H6>Seismic Information</H6>
-        <Tree
+        {/* <Tree
           contents={nodes}
           onNodeClick={handleNodeClick}
           onNodeCollapse={handleNodeCollapse}
           onNodeExpand={handleNodeExpand}
           className={Classes.ELEVATION_0}
-        />
+        /> */}
       </React.Fragment>
     );
   }
