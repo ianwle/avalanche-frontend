@@ -1,8 +1,6 @@
 import React from "react";
 import { Classes, H6, Tree } from "@blueprintjs/core";
 
-// import * as GeneralActions from "@/redux/actions/GeneralActions"
-// import * as LayerActions from "@/redux/actions/LayerActions"
 import { connect } from "react-redux";
 
 import * as Types from "@/redux/constants/Types"
@@ -60,7 +58,7 @@ function Layers(props) {
 
   return (
     <React.Fragment>
-      <H6>Seismic Information</H6>
+      <H6>Layers</H6>
         <Tree
           contents={props.LayerReducer.layers}
           onNodeClick={handleNodeClick}

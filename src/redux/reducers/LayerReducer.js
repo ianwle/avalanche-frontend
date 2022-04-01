@@ -1,9 +1,10 @@
 
 import React from "react";
-import { ContextMenu2 } from "@blueprintjs/popover2";
+import { Icon, Tree } from "@blueprintjs/core";
+import { Tooltip2 } from "@blueprintjs/popover2";
 import { cloneDeep } from "lodash-es";
 
-import { Tree } from "@blueprintjs/core";
+import Label from "@/components/Widget/Label";
 
 import * as Types from '@/redux/constants/Types';
 
@@ -12,21 +13,74 @@ const INITIAL_STATE = {
     {
       id: 0,
       hasCaret: true,
-      icon: 'folder-open',
-      label: (
-        <ContextMenu2 content={<div>Hello there!</div>}>
-          Folder 0
-        </ContextMenu2>
-      )
-    },
-    {
-      id: 1,
-      hasCaret: true,
-      label: (<div>Hello there 2</div>),
+      icon: 'asterisk',
+      label: (<div>Risk Index</div>
+      ),
       childNodes: [
         {
+          id: 1,
+          icon: 'numerical',
+          hasCaret: false,
+          secondaryLabel: (
+            <Label icon="eye-on"/>
+          ),
+          label: (<div>Variable 1</div>)
+        },
+
+        {
           id: 2,
-          label: (<div>easy motherfucking e</div>)
+          icon: 'numerical',
+          hasCaret: false,
+          secondaryLabel: (
+            <Icon icon="eye-on" />
+          ),
+          label: (<div>Variable 2</div>)
+        },
+
+        {
+          id: 3,
+          icon: 'numerical',
+          hasCaret: false,
+          secondaryLabel: (
+            <Icon icon="eye-on" />
+          ),
+          label: (<div>Variable 3</div>)
+        }
+      ]
+    },
+    {
+      id: 4,
+      hasCaret: true,
+      icon: 'person',
+      label: (<div>Sentiment Analysis</div>),
+      childNodes: [
+        {
+          id: 5,
+          icon: 'multi-select',
+          secondaryLabel: (
+            <Icon icon="eye-on" />
+          ),
+          label: (<div>Previous 30-Day Average</div>)
+        },
+
+        {
+          id: 6,
+          icon: 'multi-select',
+          hasCaret: false,
+          secondaryLabel: (
+            <Icon icon="eye-on" />
+          ),
+          label: (<div>Total 60-Day +/- Average</div>)
+        },
+
+        {
+          id: 7,
+          icon: 'multi-select',
+          hasCaret: false,
+          secondaryLabel: (
+            <Icon icon="eye-on" />
+          ),
+          label: (<div>Next 30-Day Average</div>)
         }
       ]
     }
@@ -70,7 +124,6 @@ export default function MapReducer (state = INITIAL_STATE, action) {
     }
 
     case (Types.SET_IS_SELECTED): {
-
       const newState = cloneDeep(state);
       forNodeAtPath(newState.layers, action.payload.path, node => {
         (node.isSelected = action.payload.isSelected)
@@ -79,6 +132,12 @@ export default function MapReducer (state = INITIAL_STATE, action) {
       console.log(action.payload);
       console.log(newState);
       return newState;
+    }
+
+    case (Types.TOGGLE_VISIBILITY): {
+      const newState = cloneDeep(state);
+      // TODO: do something here!
+      return newState
     }
 
     default:
