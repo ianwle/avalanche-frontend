@@ -31,7 +31,7 @@ class Home extends React.PureComponent {
                 containerPadding={[20, 20]}
                 {...Config.RGL_PROPS}>
                   <div key="menu"><Menu/></div>
-                  <div key="data"><Table/></div>
+                  {/* <div key="data"><Table/></div> */}
               </ResponsiveGridLayout>
           </div>
       </div>

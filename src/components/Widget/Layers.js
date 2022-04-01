@@ -1,10 +1,17 @@
 import React from "react";
 import { H6, Tree } from "@blueprintjs/core";
 
+import * as GeneralActions from "@/redux/actions/GeneralActions"
+// import * as LayerActions from "@/redux/actions/LayerActions"
+import { connect } from "react-redux";
 
-export default class Layers extends React.Component {
+class Layers extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+  }
+
+  componentDidMount() {
+    console.log(this.props);
   }
 
   render() {
@@ -12,13 +19,34 @@ export default class Layers extends React.Component {
       <React.Fragment>
         <H6>Seismic Information</H6>
         <Tree
-          contents={nodes}
-          onNodeClick={handleNodeClick}
-          onNodeCollapse={handleNodeCollapse}
-          onNodeExpand={handleNodeExpand}
-          className={Classes.ELEVATION_0}
+          contents={this.props.LayerReducer.layers}
+          // onNodeClick={handleNodeClick}
+          // onNodeCollapse={handleNodeCollapse}
+          // onNodeExpand={handleNodeExpand}
+          // className={Classes.ELEVATION_0}
         />
       </React.Fragment>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+      GeneralReducer: state.GeneralReducer,
+      LayerReducer: state.LayerReducer
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return ({
+      toggleNewsSelected: () => {
+          dispatch(GeneralActions.toggleNewsSelected())
+      },
+      addNewMarker: (latitude, longitude) => {
+          dispatch(GeneralActions.addNewMarker(latitude, longitude))
+      }
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layers);
