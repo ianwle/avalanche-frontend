@@ -1,7 +1,5 @@
-
 import React from "react";
 import { Icon, Tree } from "@blueprintjs/core";
-import { Tooltip2 } from "@blueprintjs/popover2";
 import { cloneDeep } from "lodash-es";
 
 import Label from "@/components/Widget/Label";
@@ -9,32 +7,32 @@ import Label from "@/components/Widget/Label";
 import * as Types from '@/redux/constants/Types';
 
 const INITIAL_STATE = {
-  layers: [
+  tools: [
     {
       id: 0,
       hasCaret: true,
-      icon: 'asterisk',
-      label: (<div>Risk Index</div>
+      icon: 'draw',
+      label: (<div>Draw</div>
       ),
       childNodes: [
         {
           id: 1,
-          icon: 'numerical',
+          icon: 'polygon-filter',
           hasCaret: false,
           secondaryLabel: (
             <Label icon="eye-on"/>
           ),
-          label: (<div>Variable 1</div>)
+          label: (<div>Polygon</div>)
         },
 
         {
           id: 2,
-          icon: 'numerical',
+          icon: 'pin',
           hasCaret: false,
           secondaryLabel: (
             <Icon icon="eye-on" />
           ),
-          label: (<div>Variable 2</div>)
+          label: (<div>Mark</div>)
         },
 
         {
@@ -51,8 +49,45 @@ const INITIAL_STATE = {
     {
       id: 4,
       hasCaret: true,
-      icon: 'person',
-      label: (<div>Sentiment Analysis</div>),
+      icon: 'calculator',
+      label: (<div>Calculate</div>),
+      childNodes: [
+        {
+          id: 5,
+          icon: 'multi-select',
+          secondaryLabel: (
+            <Icon icon="eye-on" />
+          ),
+          label: (<div>Previous 30-Day Average</div>)
+        },
+
+        {
+          id: 6,
+          icon: 'multi-select',
+          hasCaret: false,
+          secondaryLabel: (
+            <Icon icon="eye-on" />
+          ),
+          label: (<div>Total 60-Day +/- Average</div>)
+        },
+
+        {
+          id: 7,
+          icon: 'multi-select',
+          hasCaret: false,
+          secondaryLabel: (
+            <Icon icon="eye-on" />
+          ),
+          label: (<div>Next 30-Day Average</div>)
+        }
+      ]
+    },
+
+    {
+      id: 8,
+      hasCaret: true,
+      icon: 'text-highlight',
+      label: (<div>Comment</div>),
       childNodes: [
         {
           id: 5,
@@ -111,21 +146,21 @@ export default function MapReducer (state = INITIAL_STATE, action) {
       }
     }
 
-    case (Types.DESELECT_ALL_LAYERS): {
+    case (Types.DESELECT_ALL_TOOLS): {
       const newState = cloneDeep(state);
-      forEachNode(newState.layers, node => (node.isSelected = false));
+      forEachNode(newState.tools, node => (node.isSelected = false));
       return newState;
     }
 
-    case (Types.SET_IS_EXPANDED_LAYERS): {
+    case (Types.SET_IS_EXPANDED_TOOLS): {
       const newState = cloneDeep(state);
-      forNodeAtPath(newState.layers, action.payload.path, node => (node.isExpanded = action.payload.isExpanded));
+      forNodeAtPath(newState.tools, action.payload.path, node => (node.isExpanded = action.payload.isExpanded));
       return newState
     }
 
-    case (Types.SET_IS_SELECTED_LAYERS): {
+    case (Types.SET_IS_SELECTED_TOOLS): {
       const newState = cloneDeep(state);
-      forNodeAtPath(newState.layers, action.payload.path, node => {
+      forNodeAtPath(newState.tools, action.payload.path, node => {
         (node.isSelected = action.payload.isSelected)
       });
       console.log(`and my new statei`);
@@ -134,7 +169,7 @@ export default function MapReducer (state = INITIAL_STATE, action) {
       return newState;
     }
 
-    case (Types.TOGGLE_VISIBILITY_LAYERS): {
+    case (Types.TOGGLE_VISIBILITY_TOOLS): {
       const newState = cloneDeep(state);
       // TODO: do something here!
       return newState

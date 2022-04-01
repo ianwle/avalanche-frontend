@@ -12,7 +12,7 @@ function Label(props) {
   return (
       <Icon icon={props.icon} onClick={() => {
         props.dispatchPayload({
-          type: Types.TOGGLE_VISIBILITY
+          type: Types.TOGGLE_VISIBILITY_LAYERS
         })
       }}/>
   );

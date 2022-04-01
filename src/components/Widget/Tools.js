@@ -1,47 +1,88 @@
 import React from "react";
-import { Icon, Tab, Tabs } from "@blueprintjs/core";
-import News from "@/components/Widget/News"
-import Layers from "@/components/Widget/Layers"
-
-// import * as GeneralActions from "@/redux/actions/GeneralActions"
+import { Classes, H6, Tree } from "@blueprintjs/core";
 
 import { connect } from "react-redux";
 
-class Menu extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+import * as Types from "@/redux/constants/Types"
 
-  componentDidMount() {
-  }
 
-  render() {
-    return (
-      <React.Fragment>
-        <Tabs>
+// This needs to be a React component because
+// we cannot violate the Rule of Hooks. Need to use
+// a callback.
+function Tools(props) {
+  const handleNodeClick = React.useCallback(
+    (node, nodePath, evt) => {
+      const originallySelected = node.isSelected;
+      props.dispatchPayload({
+        type: Types.DESELECT_ALL_TOOLS
+      });
 
-        </Tabs>
-      </React.Fragment>
-    )
-  }
+      props.dispatchPayload({
+        type: Types.SET_IS_SELECTED_TOOLS,
+        payload: {
+          path: nodePath,
+          isSelected: originallySelected == null ? true : !originallySelected
+        }
+      });
+
+      console.log(props);
+    }
+  );
+
+  const handleNodeCollapse = React.useCallback(
+    (_node, nodePath) => {
+      props.dispatchPayload({
+        type: Types.SET_IS_EXPANDED_TOOLS,
+        payload: {
+          path: nodePath,
+          isExpanded: false
+        }
+      });
+    }
+  );
+
+  const handleNodeExpand = React.useCallback(
+    (_node, nodePath) => {
+      props.dispatchPayload({
+        type: Types.SET_IS_EXPANDED_TOOLS,
+        payload: {
+          path: nodePath,
+          isExpanded: true
+        }
+      });
+    }
+  );
+
+
+  return (
+    <React.Fragment>
+      <H6>Tools</H6>
+        <Tree
+          contents={props.ToolReducer.tools}
+          onNodeClick={handleNodeClick}
+          onNodeCollapse={handleNodeCollapse}
+          onNodeExpand={handleNodeExpand}
+          className={Classes.ELEVATION_0}
+        />
+    </React.Fragment>
+  );
+
+
 }
 
 const mapStateToProps = (state) => {
   console.log(state)
   return {
-    GeneralReducer: state.GeneralReducer
+      ToolReducer: state.ToolReducer
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    dispatchPayload: (args) => {
-      dispatch(args);
-    }
-    // toggleNewsSelected: () => {
-    //   dispatch(GeneralActions.toggleNewsSelected())
-    // }
+      dispatchPayload: (args) => {
+        dispatch(args)
+      },
   })
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(Tools);

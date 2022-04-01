@@ -15,12 +15,12 @@ function Layers(props) {
       const originallySelected = node.isSelected;
       if (!evt.shiftKey) {
         props.dispatchPayload({
-          type: Types.DESELECT_ALL
+          type: Types.DESELECT_ALL_LAYERS
         });
       }
 
       props.dispatchPayload({
-        type: Types.SET_IS_SELECTED,
+        type: Types.SET_IS_SELECTED_LAYERS,
         payload: {
           path: nodePath,
           isSelected: originallySelected == null ? true : !originallySelected
@@ -34,7 +34,7 @@ function Layers(props) {
   const handleNodeCollapse = React.useCallback(
     (_node, nodePath) => {
       props.dispatchPayload({
-        type: Types.SET_IS_EXPANDED,
+        type: Types.SET_IS_EXPANDED_LAYERS,
         payload: {
           path: nodePath,
           isExpanded: false
@@ -46,7 +46,7 @@ function Layers(props) {
   const handleNodeExpand = React.useCallback(
     (_node, nodePath) => {
       props.dispatchPayload({
-        type: Types.SET_IS_EXPANDED,
+        type: Types.SET_IS_EXPANDED_LAYERS,
         payload: {
           path: nodePath,
           isExpanded: true
