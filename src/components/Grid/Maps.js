@@ -2,7 +2,9 @@ import React from "react";
 import { Map, Marker, Source } from "react-map-gl";
 
 import { connect } from "react-redux";
-import * as GeneralActions from "@/redux/actions/GeneralActions";
+// import * as GeneralActions from "@/redux/actions/GeneralActions";
+import * as Types from "@/redux/constants/Types"
+
 
 const MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoiaWFud3VsaW5nZW4iLCJhIjoiY2t6eDI1d2NvOGNvODJwbXp6bGpxbjJ4MCJ9.ImeaanDx3rXEwZW8LBxmdw"
 
@@ -15,10 +17,13 @@ class Maps extends React.Component {
 
     handleClick(args) {
         console.log(args)
-        this.props.addNewMarker(
-            args.lngLat.lat,
-            args.lngLat.lng
-        );
+        this.props.dispatchPayload({
+          type: Types.ADD_NEW_MARKER,
+          payload: {
+            latitude: args.lngLat.lat,
+            longitude: args.lngLat.lng
+          }
+        });
     }
 
     render() {
@@ -77,12 +82,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return ({
-        toggleNewsSelected: () => {
-            dispatch(GeneralActions.toggleNewsSelected())
-        },
-        addNewMarker: (latitude, longitude) => {
-            dispatch(GeneralActions.addNewMarker(latitude, longitude))
-        }
+      dispatchPayload: (args) => {
+        dispatch(args)
+      }
+        // toggleNewsSelected: () => {
+        //     dispatch(GeneralActions.toggleNewsSelected())
+        // },
+        // addNewMarker: (latitude, longitude) => {
+        //     dispatch(GeneralActions.addNewMarker(latitude, longitude))
+        // }
     })
 }
 
