@@ -2,7 +2,7 @@ import React from "react";
 
 /* Redux */
 import { connect } from "react-redux";
-import * as GeneralActions from "@/redux/actions/GeneralActions"
+// import * as GeneralActions from "@/redux/actions/GeneralActions"
 class News extends React.Component {
   constructor(props) {
     super(props)
@@ -25,9 +25,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    toggleNewsSelected: () => {
-      dispatch(GeneralActions.toggleNewsSelected())
+    dispatchPayload: (args) => {
+      dispatch(args);
     }
+    // toggleNewsSelected: () => {
+    //   dispatch(GeneralActions.toggleNewsSelected())
+    // }
   })
 }
 

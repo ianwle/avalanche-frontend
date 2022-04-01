@@ -59,21 +59,25 @@ export default function MapReducer (state = INITIAL_STATE, action) {
 
     case (Types.DESELECT_ALL): {
       const newState = cloneDeep(state);
-      forEachNode(state.layers, node => (node.isSelected = false));
+      forEachNode(newState.layers, node => (node.isSelected = false));
       return newState;
     }
 
     case (Types.SET_IS_EXPANDED): {
       const newState = cloneDeep(state);
-      forNodeAtPath(state.layers, action.payload.path, node => (node.isExpanded = action.payload.isExpanded));
+      forNodeAtPath(newState.layers, action.payload.path, node => (node.isExpanded = action.payload.isExpanded));
       return newState
     }
 
     case (Types.SET_IS_SELECTED): {
 
       const newState = cloneDeep(state);
-      forNodeAtPath(state.layers, action.payload.path, node => (node.isSelected = action.payload.isSelected));
-      console.log("and my new stateis {}".format(newState));
+      forNodeAtPath(newState.layers, action.payload.path, node => {
+        (node.isSelected = action.payload.isSelected)
+      });
+      console.log(`and my new statei`);
+      console.log(action.payload);
+      console.log(newState);
       return newState;
     }
 

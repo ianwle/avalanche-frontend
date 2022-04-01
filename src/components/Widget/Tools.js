@@ -3,7 +3,7 @@ import { Icon, Tab, Tabs } from "@blueprintjs/core";
 import News from "@/components/Widget/News"
 import Layers from "@/components/Widget/Layers"
 
-import * as GeneralActions from "@/redux/actions/GeneralActions"
+// import * as GeneralActions from "@/redux/actions/GeneralActions"
 
 import { connect } from "react-redux";
 
@@ -65,9 +65,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    toggleNewsSelected: () => {
-      dispatch(GeneralActions.toggleNewsSelected())
+    dispatchPayload: (args) => {
+      dispatch(args);
     }
+    // toggleNewsSelected: () => {
+    //   dispatch(GeneralActions.toggleNewsSelected())
+    // }
   })
 }
 

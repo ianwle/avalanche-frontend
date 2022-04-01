@@ -12,7 +12,7 @@ import Table from "@/components/Widget/Table";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-import * as GeneralActions from "@/redux/actions/GeneralActions"
+// import * as GeneralActions from "@/redux/actions/GeneralActions"
 
 class Home extends React.PureComponent {
   constructor(props) {
@@ -54,9 +54,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    toggleNewsSelected: () => {
-      dispatch(GeneralActions.toggleNewsSelected())
-    }
+    dispatchPayload: (args) => {
+      dispatch(args);
+    },
+    // toggleNewsSelected: () => {
+    //   dispatch(GeneralActions.toggleNewsSelected())
+    // }
   })
 }
 
