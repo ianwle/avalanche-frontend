@@ -13,42 +13,12 @@ class Menu extends React.Component {
   }
 
   componentDidMount() {
-
   }
 
   render() {
     return (
       <React.Fragment>
-        <Tabs
-            animate={true}
-            id="TabsExample"
-            key={"horizontal"}
-            renderActiveTabPanelOnly={false}
-        >
-            <Tab id="xg" title={<Icon icon="globe-network"/>} panel={<div><News/></div>} />
-            {
-              (() => {
-                if (this.props.GeneralReducer["newsSelectedFlag"] !== undefined &&
-                this.props.GeneralReducer["newsSelectedFlag"]) {
-                  return (
-                    <React.Fragment>
-                      <Tab id="layers" title={<Icon icon="layers" />} panel={<div>React</div>} />
-                      <Tab id="Tools" title={<Icon icon="wrench" />} panel={<div>Tools</div>} />
-                      <Tab id="filter" title={<Icon icon="filter"/>} panel={<div>Angular</div>} />
-                      <Tab id="settings" title={<Icon icon="cog"/>} panel={<div>Menu</div>} />
-                    </React.Fragment>
-                  );
-                } else {
-                  return (
-                    <React.Fragment>
-                      <Tab id="layers" title={<Icon icon="layers" />} panel={<div>Layers</div>} />
-                      <Tab id="Tools" title={<Icon icon="wrench" />} panel={<div>Tools</div>} />
-                      <Tab id="filter" title={<Icon icon="filter" />} panel={<div>Filter</div>} />
-                      <Tab id="settings" title={<Icon icon="cog" />} panel={<div>Settings</div>} />
-                    </React.Fragment>)
-                }
-              })()
-            }
+        <Tabs>
 
         </Tabs>
       </React.Fragment>
