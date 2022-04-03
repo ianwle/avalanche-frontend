@@ -2,6 +2,7 @@ import React from "react";
 
 /* Redux */
 import { connect } from "react-redux";
+import { H6 } from "@blueprintjs/core";
 // import * as GeneralActions from "@/redux/actions/GeneralActions"
 class News extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class News extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <p>Controls</p>
+        <H6>News</H6>
       </React.Fragment>
     )
   }

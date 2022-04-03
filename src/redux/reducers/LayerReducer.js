@@ -128,9 +128,9 @@ export default function MapReducer (state = INITIAL_STATE, action) {
       forNodeAtPath(newState.layers, action.payload.path, node => {
         (node.isSelected = action.payload.isSelected)
       });
-      console.log(`and my new statei`);
-      console.log(action.payload);
-      console.log(newState);
+      // console.log(`and my new statei`);
+      // console.log(action.payload);
+      // console.log(newState);
       return newState;
     }
 

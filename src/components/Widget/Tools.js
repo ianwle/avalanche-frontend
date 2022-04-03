@@ -25,7 +25,7 @@ function Tools(props) {
         }
       });
 
-      console.log(props);
+      // console.log(props);
     }
   );
 
@@ -71,7 +71,7 @@ function Tools(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  // console.log(state)
   return {
       ToolReducer: state.ToolReducer
   }

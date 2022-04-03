@@ -27,7 +27,7 @@ function Layers(props) {
         }
       });
 
-      console.log(props);
+      // console.log(props);
     }
   );
 
@@ -73,7 +73,7 @@ function Layers(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  // console.log(state)
   return {
       GeneralReducer: state.GeneralReducer,
       LayerReducer: state.LayerReducer

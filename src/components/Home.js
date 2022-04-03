@@ -23,6 +23,10 @@ class Home extends React.PureComponent {
     };
   }
 
+  componentDidMount() {
+    document.addEventListener('contextmenu', event => event.preventDefault());
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -46,7 +50,7 @@ class Home extends React.PureComponent {
 
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  // console.log(state)
   return {
     generalReducer: state.GeneralReducer
   }

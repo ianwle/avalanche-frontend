@@ -19,7 +19,7 @@ function Label(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  // console.log(state)
   return {
       GeneralReducer: state.GeneralReducer,
       LayerReducer: state.LayerReducer

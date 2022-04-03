@@ -27,22 +27,22 @@ const INITIAL_STATE = {
 
         {
           id: 2,
+          icon: 'path',
+          hasCaret: false,
+          secondaryLabel: (
+            <Icon icon="eye-on" />
+          ),
+          label: (<div>Line</div>)
+        },
+
+        {
+          id: 3,
           icon: 'pin',
           hasCaret: false,
           secondaryLabel: (
             <Icon icon="eye-on" />
           ),
-          label: (<div>Mark</div>)
-        },
-
-        {
-          id: 3,
-          icon: 'numerical',
-          hasCaret: false,
-          secondaryLabel: (
-            <Icon icon="eye-on" />
-          ),
-          label: (<div>Variable 3</div>)
+          label: (<div>Marker</div>)
         }
       ]
     },
@@ -163,9 +163,9 @@ export default function MapReducer (state = INITIAL_STATE, action) {
       forNodeAtPath(newState.tools, action.payload.path, node => {
         (node.isSelected = action.payload.isSelected)
       });
-      console.log(`and my new statei`);
-      console.log(action.payload);
-      console.log(newState);
+      // console.log(`and my new statei`);
+      // console.log(action.payload);
+      // console.log(newState);
       return newState;
     }
 
