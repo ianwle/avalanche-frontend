@@ -1,7 +1,10 @@
 import * as type from '@/redux/constants/Types';
 
+import { cloneDeep } from "lodash-es";
+
 const INITIAL_STATE = {
-  markers: []
+  markers: [],
+  currentMode: null
 };
 
 export default function MapReducer (state = INITIAL_STATE, action) {
@@ -41,6 +44,12 @@ export default function MapReducer (state = INITIAL_STATE, action) {
         ...state,
         markers: newMarkers
       }
+    }
+
+    case (type.UPDATE_MODE): {
+      let newState = cloneDeep(state);
+      newState.currentMode = action.payload.mode;
+      return newState;
     }
 
     default:

@@ -7,6 +7,7 @@ import { H6, Button } from '@blueprintjs/core';
 import { connect } from 'react-redux';
 
 import Maps from "@/components/Grid/Maps";
+import ModeTools from "@/components/Grid/ModeTools";
 import Menu from "@/components/Widget/Menu";
 import Table from "@/components/Widget/Table";
 
@@ -39,6 +40,7 @@ class Home extends React.PureComponent {
                 containerPadding={[20, 20]}
                 {...Config.RGL_PROPS}>
                   <div key="menu"><Menu/></div>
+                  <div key="tools"><ModeTools/></div>
                   {/* <div key="data"><Table/></div> */}
               </ResponsiveGridLayout>
           </div>

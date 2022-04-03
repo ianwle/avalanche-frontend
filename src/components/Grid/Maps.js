@@ -5,10 +5,9 @@ import StaticMap, { Source} from "react-map-gl";
 import { connect } from "react-redux";
 // import * as GeneralActions from "@/redux/actions/GeneralActions";
 import * as Types from "@/redux/constants/Types"
-import Pin from "@/components/Grid/Pin"
 
 import { EditableGeoJsonLayer } from '@nebula.gl/layers';
-import { DrawPolygonMode } from '@nebula.gl/edit-modes';
+import * as editModes from '@nebula.gl/edit-modes';
 
 const MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoiaWFud3VsaW5nZW4iLCJhIjoiY2t6eDI1d2NvOGNvODJwbXp6bGpxbjJ4MCJ9.ImeaanDx3rXEwZW8LBxmdw"
 const selectedFeatureIndexes = []
@@ -37,16 +36,27 @@ class Maps extends React.Component {
         }
       }
 
+      componentDidMount() {
+        this.props.dispatchPayload({
+          type: Types.UPDATE_MODE,
+          payload: {
+            mode: "ViewMode"
+          }
+        })
+      }
+
     render() {
       const editableGeoJsonLayer = new EditableGeoJsonLayer({
         id: 'geojson-layer',
         data: this.state.geojson,
-        mode: DrawPolygonMode, selectedFeatureIndexes,
-        onEdit: ({ updatedData }) => {
+        mode: editModes[this.props.MapReducer.currentMode], selectedFeatureIndexes,
+        onEdit: (args) => {
+          console.log(editModes[this.props.MapReducer.currentMode])
           this.setState({
-            geojson: updatedData,
+            geojson: args.updatedData,
           });
         },
+        pickable: true
       });
 
       const initialViewState = {
