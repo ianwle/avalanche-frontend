@@ -3,7 +3,7 @@ import { Icon, Tab, Tabs } from "@blueprintjs/core";
 import News from "@/components/Widget/News";
 import Tools from "@/components/Widget/Tools";
 import Layers from "@/components/Widget/Layers";
-
+import Info from "@/components/Widget/Info";
 // import * as GeneralActions from "@/redux/actions/GeneralActions";
 
 import { connect } from "react-redux";
@@ -30,6 +30,8 @@ class Menu extends React.Component {
           <Tab id="layers" title={<Icon icon="layers" />} panel={<div><Layers/></div>} />
           <Tab id="Tools" title={<Icon icon="wrench" />} panel={<div><Tools/></div>} />
           <Tab id="filter" title={<Icon icon="filter" />} panel={<div>Filter</div>} />
+          <Tab id="information" title={<Icon icon="info-sign" />} panel={<div><Info/></div>} />
+
           <Tab id="settings" title={<Icon icon="cog" />} panel={<div>Settings</div>} />
             {/* {
               (() => {

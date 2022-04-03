@@ -116,10 +116,18 @@ class Maps extends React.Component {
           // console.log(info, this.props.MapReducer.currentMode);
           if (this.props.MapReducer.currentMode === "ViewMode") {
             if (info) {
-              console.log(info.index)
-              // setSelectedFeatureIndexes([info.index]);
+              // console.log(info.index)
+              this.props.dispatchPayload({
+                type: Types.UPDATE_SELECTED_FEATURE_INDEXES,
+                payload: {
+                  index: [info.index]
+                }})
             } else {
-              // setSelectedFeatureIndexes([]);
+              this.props.dispatchPayload({
+                type: Types.UPDATE_SELECTED_FEATURE_INDEXES,
+                payload: {
+                  index: []
+                }})
             }
           }
         }}

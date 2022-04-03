@@ -3,21 +3,19 @@ import * as type from '@/redux/constants/Types';
 import { cloneDeep } from "lodash-es";
 
 const INITIAL_STATE = {
-  pins: [],
-  pinsVisible: [],
-  pinsDetails: [],
+  pins: {},
   currentPin: -1,
 };
 
 export default function PinsReducer (state = INITIAL_STATE, action) {
-  swtich (action.type) {
+  switch (action.type) {
     case (type.ADD_PIN): {
-
+      return state;
     }
 
     case (type.TOGGLE_PIN): {
       let newState = cloneDeep(state);
-      newState.pinsVisible[action.payload.index] = !newState.pinsVisible[action.payload.index];
+      newState.pins[action.payload.index].isVisible = !newState.pins[action.payload.index].isVisible;
       return newState;
     }
 
