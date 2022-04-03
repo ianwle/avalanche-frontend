@@ -13,8 +13,6 @@ import Table from "@/components/Widget/Table";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-// import * as GeneralActions from "@/redux/actions/GeneralActions"
-
 class Home extends React.PureComponent {
   constructor(props) {
     super(props);

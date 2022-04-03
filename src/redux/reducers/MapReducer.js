@@ -4,7 +4,11 @@ import { cloneDeep } from "lodash-es";
 
 const INITIAL_STATE = {
   markers: [],
-  currentMode: null
+  currentMode: null,
+  geoJson: {
+    type: 'FeatureCollection',
+    features: []
+  },
 };
 
 export default function MapReducer (state = INITIAL_STATE, action) {
@@ -49,6 +53,12 @@ export default function MapReducer (state = INITIAL_STATE, action) {
     case (type.UPDATE_MODE): {
       let newState = cloneDeep(state);
       newState.currentMode = action.payload.mode;
+      return newState;
+    }
+
+    case (type.UPDATE_GEOJSON): {
+      let newState = cloneDeep(state);
+      newState.geoJson = action.payload.geoJson;
       return newState;
     }
 
