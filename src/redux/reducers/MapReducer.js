@@ -8,8 +8,8 @@ const INITIAL_STATE = {
   geoJson: {
     type: 'FeatureCollection',
     features: [],
-    selectedFeatures: [],
   },
+  selectedFeatureIndexes: [],
   currentIndex: -1,
 };
 
@@ -66,8 +66,9 @@ export default function MapReducer (state = INITIAL_STATE, action) {
 
     case (type.UPDATE_SELECTED_FEATURE_INDEXES): {
       let newState = cloneDeep(state);
-      // newState.geoJson.selectedFeatures = action.payload.index;
+      newState.selectedFeatureIndexes = action.payload.selectedFeatureIndexes;
       newState.currentIndex = action.payload.index;
+      console.log(newState)
       return newState;
     }
 

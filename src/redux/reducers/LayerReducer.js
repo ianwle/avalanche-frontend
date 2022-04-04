@@ -83,6 +83,42 @@ const INITIAL_STATE = {
           label: (<div>Next 30-Day Average</div>)
         }
       ]
+    },
+    {
+      id: 8,
+      hasCaret: true,
+      icon: 'person',
+      label: (<div>Sentiment Analysis</div>),
+      childNodes: [
+        {
+          id: 5,
+          icon: 'multi-select',
+          secondaryLabel: (
+            <Icon icon="eye-on" />
+          ),
+          label: (<div>Previous 30-Day Average</div>)
+        },
+
+        {
+          id: 6,
+          icon: 'multi-select',
+          hasCaret: false,
+          secondaryLabel: (
+            <Icon icon="eye-on" />
+          ),
+          label: (<div>Total 60-Day +/- Average</div>)
+        },
+
+        {
+          id: 7,
+          icon: 'multi-select',
+          hasCaret: false,
+          secondaryLabel: (
+            <Icon icon="eye-on" />
+          ),
+          label: (<div>Next 30-Day Average</div>)
+        }
+      ]
     }
   ]
 };

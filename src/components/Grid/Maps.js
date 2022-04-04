@@ -10,7 +10,7 @@ import { EditableGeoJsonLayer, SelectionLayer } from '@nebula.gl/layers';
 import * as editModes from '@nebula.gl/edit-modes';
 
 const MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoiaWFud3VsaW5nZW4iLCJhIjoiY2t6eDI1d2NvOGNvODJwbXp6bGpxbjJ4MCJ9.ImeaanDx3rXEwZW8LBxmdw"
-const selectedFeatureIndexes = []
+// const selectedFeatureIndexes = []
 class Maps extends React.Component {
   constructor(props) {
       super(props);
@@ -44,7 +44,8 @@ class Maps extends React.Component {
     const editableGeoJsonLayer = new EditableGeoJsonLayer({
       id: 'geojson-layer',
       data: this.props.MapReducer.geoJson,
-      mode: editModes[this.props.MapReducer.currentMode], selectedFeatureIndexes,
+      mode: editModes[this.props.MapReducer.currentMode],
+      selectedFeatureIndexes: this.props.MapReducer.selectedFeatureIndexes,
       onEdit: (args) => {
         // console.log(editModes[this.props.MapReducer.currentMode])
         this.props.dispatchPayload({
@@ -54,30 +55,35 @@ class Maps extends React.Component {
           }
         })
       },
-      // _subLayerProps: {
-      //   geojson: {
-      //     getFillColor: (feature) => {
-      //       console.log(feature);
-      //     }
-      //   }
-      // },
+      _subLayerProps: {
+        geojson: {
+          getFillColor: (feature) => {
+            if (this.props.MapReducer.selectedFeatureIndexes.some(i => this.props.MapReducer.geoJson.features[i] === feature)) {
+              return [0, 0, 255, 255];
+            } else {
+              return [0, 0, 0, 255];
+            }
+
+          }
+        }
+      },
       pickable: true
     });
 
-    const selectionLayer = new SelectionLayer({
-      id: 'selection',
-      selectionType: null,
-      onSelect: ({ pickingInfos }) => {
-        this.setState({ selectedFeatureIndexes: pickingInfos.map(pi => pi.index) });
-        console.log(pickingInfos);
-      },
-      layerIds: ['geojson'],
+    // const selectionLayer = new SelectionLayer({
+    //   id: 'selection',
+    //   selectionType: null,
+    //   onSelect: ({ pickingInfos }) => {
+    //     this.setState({ selectedFeatureIndexes: pickingInfos.map(pi => pi.index) });
+    //     console.log(pickingInfos);
+    //   },
+    //   layerIds: ['geojson'],
 
-      getTentativeFillColor: () => [255, 0, 255, 100],
-      getTentativeLineColor: () => [0, 0, 255, 255],
-      getTentativeLineDashArray: () => [0, 0],
-      lineWidthMinPixels: 3
-    })
+    //   getTentativeFillColor: () => [255, 0, 255, 100],
+    //   getTentativeLineColor: () => [0, 0, 255, 255],
+    //   getTentativeLineDashArray: () => [0, 0],
+    //   lineWidthMinPixels: 3
+    // })
 
 
     const initialViewState = {
@@ -110,23 +116,24 @@ class Maps extends React.Component {
         controller={{
           doubleClickZoom: false,
         }}
-        layers={[editableGeoJsonLayer, selectionLayer]}
+        layers={[editableGeoJsonLayer]}
         getCursor={editableGeoJsonLayer.getCursor.bind(editableGeoJsonLayer)}
         onClick={(info) => {
           // console.log(info, this.props.MapReducer.currentMode);
           if (this.props.MapReducer.currentMode === "ViewMode") {
             if (info) {
-              // console.log(info.index)
               this.props.dispatchPayload({
                 type: Types.UPDATE_SELECTED_FEATURE_INDEXES,
                 payload: {
-                  index: [info.index]
+                  index: info.index,
+                  selectedFeatureIndexes: [info.index]
                 }})
             } else {
               this.props.dispatchPayload({
                 type: Types.UPDATE_SELECTED_FEATURE_INDEXES,
                 payload: {
-                  index: []
+                  index: -1,
+                  selectedFeatureIndexes: undefined
                 }})
             }
           }

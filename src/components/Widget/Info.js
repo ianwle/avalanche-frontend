@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, H6, Icon } from "@blueprintjs/core";
+import { Button, Card, FormGroup, H6, Icon, InputGroup, TextArea } from "@blueprintjs/core";
 import * as Types from '@/redux/constants/Types';
 
 import { connect } from "react-redux";
@@ -11,13 +11,15 @@ function Info(props) {
   return (
     <React.Fragment>
       <H6>Information</H6>
-      <Card>{
+      <Card>
+        {
+
         (() => {
           if (Object.keys(props.PinsReducer.pins).includes(props.MapReducer.currentIndex[0])) {
             alert("Hi!");
           } else if (props.MapReducer.currentIndex[0] > -1) {
             return (
-              <React.Fragment>
+              <React.Fragment >
                 {(() => {
                   if (isButtonVisible) {
                     return (
@@ -28,7 +30,46 @@ function Info(props) {
                     );
                   } else if (isFormVisible) {
                     return (
-                      <p>The form goes into here.</p>
+                      <React.Fragment>
+                      <FormGroup
+                        disabled={false}
+                        label={"Description"}
+                        labelFor="text-input"
+                        // labelInfo={"(required)"}
+                        subLabel={"Describe the area on the map"}
+                      >
+                        <TextArea
+                          fill={true}
+                          growVertically={false}
+                          large={true}
+                          style={{
+                            marginBottom: "10px"
+                          }}
+                        />
+                        <InputGroup
+                          onChange={() => {}}
+                          placeholder={"Color"}
+                          style={{
+                            marginBottom: "10px"
+                          }}
+                          />
+                      <Button>{}</Button>
+
+
+                </FormGroup>
+                {/* <FormGroup
+
+                    helperText={helperText && "Helper text with details..."}
+                    inline={inline}
+                    intent={intent}
+                    label={label && "Label"}
+                    labelInfo={requiredLabel && "(required)"}
+                >
+                    <Switch label="Engage the hyperdrive" disabled={disabled} />
+                    <Switch label="Initiate thrusters" disabled={disabled} />
+                </FormGroup> */}
+
+                        </React.Fragment>
                     )
                   }
                 })()}
@@ -42,7 +83,9 @@ function Info(props) {
             );
           }
         })()
-      }</Card>
+      }
+      {/* </div> */}
+      </Card>
     </React.Fragment>
   );
 }
@@ -51,7 +94,8 @@ const mapStateToProps = (state) => {
   // console.log(state)
   return {
       PinsReducer: state.PinsReducer,
-      MapReducer: state.MapReducer
+      MapReducer: state.MapReducer,
+      GeneralReducer: state.GeneralReducer
   }
 }
 
