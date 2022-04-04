@@ -133,7 +133,7 @@ class Maps extends React.Component {
                 type: Types.UPDATE_SELECTED_FEATURE_INDEXES,
                 payload: {
                   index: -1,
-                  selectedFeatureIndexes: undefined
+                  selectedFeatureIndexes: []
                 }})
             }
           }

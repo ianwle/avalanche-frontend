@@ -15,9 +15,9 @@ function Info(props) {
         {
 
         (() => {
-          if (Object.keys(props.PinsReducer.pins).includes(props.MapReducer.currentIndex[0])) {
+          if (Object.keys(props.PinsReducer.pins).includes(props.MapReducer.currentIndex)) {
             alert("Hi!");
-          } else if (props.MapReducer.currentIndex[0] > -1) {
+          } else if (props.MapReducer.currentIndex > -1) {
             return (
               <React.Fragment >
                 {(() => {
