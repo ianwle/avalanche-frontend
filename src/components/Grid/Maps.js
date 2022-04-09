@@ -228,12 +228,32 @@ class Maps extends React.Component {
           mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
           terrain={{ source: 'mapbox-dem', exaggeration: 1.0 }}
           >
-          <Source {...sourceLayerConfig}/>
-          {this.state.data["earthquake_30_days"] && (
+            <Source {...sourceLayerConfig}/>
+            {
+              (() => {
+                let result = []
+                Object.keys(this.props.LayerReducer.isVisible).length > 0  && Object.entries(this.props.LayerReducer.isVisible).forEach(([layerName, isVisible]) => {
+                  if (isVisible) {
+                    console.log(this.state.data[layerName])
+                    result.push((
+                      <React.Fragment>
+                        this.state.data[layerName] &&
+                        <Source type="geojson" data={this.state.data[layerName]}>
+                          <Layer {...heatmapLayer}></Layer>
+                        </Source>
+                      </React.Fragment>
+                    ));
+                  }
+                })
+                console.log(result);
+                return result;
+              })()
+            }
+          {/* {this.state.data["earthquake_30_days"] && (
           <Source type="geojson" data={this.state.data["earthquake_30_days"]}>
             <Layer {...heatmapLayer} />
           </Source>
-          )}
+          )} */}
           </StaticMap>
         </DeckGL>
       </React.Fragment>
@@ -248,6 +268,7 @@ const mapStateToProps = (state) => {
         GeneralReducer: state.GeneralReducer,
         MapReducer: state.MapReducer,
         ToolReducer: state.ToolReducer,
+        LayerReducer: state.LayerReducer,
     }
 }
 
