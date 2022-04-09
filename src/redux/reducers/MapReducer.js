@@ -11,6 +11,7 @@ const INITIAL_STATE = {
   },
   selectedFeatureIndexes: [],
   currentIndex: -1,
+  isVisible: {}
 };
 
 export default function MapReducer (state = INITIAL_STATE, action) {

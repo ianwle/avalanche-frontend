@@ -1,9 +1,11 @@
 import React from "react";
 import { Classes, H6, Tree } from "@blueprintjs/core";
+import { Popover2 } from "@blueprintjs/popover2";
+
 
 import { connect } from "react-redux";
 
-import * as Types from "@/redux/constants/Types"
+import * as Types from "@/redux/constants/Types";
 
 
 // This needs to be a React component because
@@ -13,6 +15,7 @@ function Layers(props) {
   const handleNodeClick = React.useCallback(
     (node, nodePath, evt) => {
       const originallySelected = node.isSelected;
+
       if (!evt.shiftKey) {
         props.dispatchPayload({
           type: Types.DESELECT_ALL_LAYERS

@@ -9,44 +9,18 @@ import Label from "@/components/Widget/Label";
 import * as Types from '@/redux/constants/Types';
 
 const INITIAL_STATE = {
+  isVisible: {
+
+  },
   layers: [
     {
       id: 0,
-      hasCaret: true,
+      name: "risk_index",
+      hasCaret: false,
       icon: 'asterisk',
       label: (<div>Risk Index</div>
       ),
-      childNodes: [
-        {
-          id: 1,
-          icon: 'numerical',
-          hasCaret: false,
-          secondaryLabel: (
-            <Label icon="eye-on"/>
-          ),
-          label: (<div>Variable 1</div>)
-        },
-
-        {
-          id: 2,
-          icon: 'numerical',
-          hasCaret: false,
-          secondaryLabel: (
-            <Icon icon="eye-on" />
-          ),
-          label: (<div>Variable 2</div>)
-        },
-
-        {
-          id: 3,
-          icon: 'numerical',
-          hasCaret: false,
-          secondaryLabel: (
-            <Icon icon="eye-on" />
-          ),
-          label: (<div>Variable 3</div>)
-        }
-      ]
+      childNodes: []
     },
     {
       id: 4,
@@ -56,30 +30,27 @@ const INITIAL_STATE = {
       childNodes: [
         {
           id: 5,
+          name: "sentiment_prev_30_day",
           icon: 'multi-select',
-          secondaryLabel: (
-            <Icon icon="eye-on" />
-          ),
-          label: (<div>Previous 30-Day Average</div>)
+          secondaryLabel: (<Label name="sentiment_prev_30_day" icon="eye-off" />),
+          label: (<div>Previous 30-Day Average</div>),
         },
 
         {
           id: 6,
+          name: "sentiment_60_day",
           icon: 'multi-select',
           hasCaret: false,
-          secondaryLabel: (
-            <Icon icon="eye-on" />
-          ),
+          secondaryLabel: (<Label name="sentiment_60_day" icon="eye-off" />),
           label: (<div>Total 60-Day +/- Average</div>)
         },
 
         {
           id: 7,
+          name: "sentiment_next_30_day",
           icon: 'multi-select',
           hasCaret: false,
-          secondaryLabel: (
-            <Icon icon="eye-on" />
-          ),
+          secondaryLabel: (<Label name="sentiment_next_30_day" icon="eye-off" />),
           label: (<div>Next 30-Day Average</div>)
         }
       ]
@@ -87,36 +58,33 @@ const INITIAL_STATE = {
     {
       id: 8,
       hasCaret: true,
-      icon: 'person',
-      label: (<div>Sentiment Analysis</div>),
+      icon: 'globe',
+      label: (<div>Earthquake Data (USGS)</div>),
       childNodes: [
         {
-          id: 5,
-          icon: 'multi-select',
-          secondaryLabel: (
-            <Icon icon="eye-on" />
-          ),
-          label: (<div>Previous 30-Day Average</div>)
+          id: 9,
+          name: "earthquake_1_day",
+          icon: 'map',
+          secondaryLabel: (<Label name="earthquake_1_day" Icon icon="eye-off" />),
+          label: (<div>Past 1 Day</div>)
         },
 
         {
           id: 6,
-          icon: 'multi-select',
+          name: "earthquake_7_days",
+          icon: 'map',
           hasCaret: false,
-          secondaryLabel: (
-            <Icon icon="eye-on" />
-          ),
-          label: (<div>Total 60-Day +/- Average</div>)
+          secondaryLabel: (<Label name="earthquake_7_days" icon={"eye-off"} />),
+          label: (<div>Past 7 Days</div>)
         },
 
         {
           id: 7,
-          icon: 'multi-select',
+          name: "earthquake_30_days",
+          icon: 'map',
           hasCaret: false,
-          secondaryLabel: (
-            <Icon icon="eye-on" />
-          ),
-          label: (<div>Next 30-Day Average</div>)
+          secondaryLabel: (<Label name="earthquake_30_days" icon="eye-off" />),
+          label: (<div>Past 30 Days</div>)
         }
       ]
     }
@@ -172,9 +140,16 @@ export default function MapReducer (state = INITIAL_STATE, action) {
 
     case (Types.TOGGLE_VISIBILITY_LAYERS): {
       const newState = cloneDeep(state);
+      if  (newState.isVisible[action.payload.name] === undefined) {
+        newState.isVisible[action.payload.name] = true // true by default, since the original is false (start on false)
+      } else {
+        newState.isVisible[action.payload.name] = !newState.isVisible[action.payload.name] // toggle
+      }
       // TODO: do something here!
+      console.log(newState)
       return newState
     }
+
 
     default:
       return state;

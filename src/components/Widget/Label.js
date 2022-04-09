@@ -10,9 +10,17 @@ import { connect } from "react-redux";
 function Label(props) {
 
   return (
-      <Icon icon={props.icon} onClick={() => {
+      <Icon icon={(() => {
+        if (props.LayerReducer.isVisible[props.name] === undefined || props.LayerReducer.isVisible[props.name] === false) {
+          return "eye-off";
+        }
+        return "eye-on";
+      })()} onClick={() => {
         props.dispatchPayload({
-          type: Types.TOGGLE_VISIBILITY_LAYERS
+          type: Types.TOGGLE_VISIBILITY_LAYERS,
+          payload: {
+            name: props.name
+          }
         })
       }}/>
   );

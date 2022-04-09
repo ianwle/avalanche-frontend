@@ -5,7 +5,6 @@ import * as Types from '@/redux/constants/Types';
 import { connect } from "react-redux";
 
 function Info(props) {
-  // console.log(props);
   const [isButtonVisible, setIsButtonVisible] = React.useState(true);
   const [isFormVisible, setIsFormVisible] = React.useState(false);
   return (
@@ -54,20 +53,7 @@ function Info(props) {
                           }}
                           />
                       <Button>{}</Button>
-
-
                 </FormGroup>
-                {/* <FormGroup
-
-                    helperText={helperText && "Helper text with details..."}
-                    inline={inline}
-                    intent={intent}
-                    label={label && "Label"}
-                    labelInfo={requiredLabel && "(required)"}
-                >
-                    <Switch label="Engage the hyperdrive" disabled={disabled} />
-                    <Switch label="Initiate thrusters" disabled={disabled} />
-                </FormGroup> */}
 
                         </React.Fragment>
                     )
